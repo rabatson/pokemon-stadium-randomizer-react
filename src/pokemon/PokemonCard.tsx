@@ -1,23 +1,30 @@
-import { allPokemon } from "./Pokemon";
-import {Card, CardContent,  Typography} from '@mui/material'
+import { Pokemon } from '../types'
+import { Card, CardContent, styled, Typography } from '@mui/material'
 
 type PokemonCardProps = {
-    id: number
+    pokemon: Pokemon
 }
 
-export default function PokemonCard({id}: Readonly<PokemonCardProps>)
-{
-    const pokemon = allPokemon.find((p) => p.id === id)
-    
-    return  (
-    <Card sx={{minWidth: '11em'}}>
-        <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-                {pokemon?.name}
-            </Typography>
-            <img src={`/sprites/${id}.png`}/>
+const StyledCard = styled(Card)({
+    minWidth: '11em',
+    background: 'transparent',
+    boxShadow: 'none',
+    color: '#eff0f1',
+})
 
-        </CardContent>
-    </Card>
+export default function PokemonCard({ pokemon }: Readonly<PokemonCardProps>) {
+    const spriteSrc = pokemon.isShiny
+        ? `/sprites/shiny/${pokemon.id}.png`
+        : `/sprites/${pokemon.id}.png`
+
+    return (
+        <StyledCard className="card">
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {pokemon?.name}
+                </Typography>
+                <img src={spriteSrc} />
+            </CardContent>
+        </StyledCard>
     )
 }

@@ -1,4 +1,9 @@
-import { Pokemon } from "../types";
+import { Pokemon } from '../types'
+
+export const wildcard: Pokemon = {
+    id: -1,
+    name: 'Wildcard',
+}
 
 export const gen1Pokemon: Pokemon[] = [
     { id: 1, name: 'Bulbasaur' },
@@ -103,7 +108,7 @@ export const gen1Pokemon: Pokemon[] = [
     { id: 100, name: 'Voltorb' },
     { id: 101, name: 'Electrode' },
     { id: 150, name: 'Mewtwo' },
-    { id: 151, name: 'Mew' }
+    { id: 151, name: 'Mew' },
 ]
 
 export const gen2Pokemon: Pokemon[] = [
@@ -206,10 +211,10 @@ export const gen2Pokemon: Pokemon[] = [
     { id: 248, name: 'Tyranitar' },
     { id: 249, name: 'Lugia' },
     { id: 250, name: 'Ho-oh' },
-    { id: 251, name: 'Celebi' }
+    { id: 251, name: 'Celebi' },
 ]
 
- /**
- * Concatenated list of all generation of Pokemon 
+/**
+ * Concatenated list of all generation of Pokemon
  **/
 export const allPokemon: Pokemon[] = gen1Pokemon.concat(gen2Pokemon)

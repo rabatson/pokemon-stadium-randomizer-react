@@ -1,9 +1,5 @@
 export type Pokemon = {
-    id: number,
+    id: number
     name: string
-}
-
-export type GeneratedPokemon = {
-    pokemon: Pokemon,
-    isShiny: boolean
+    isShiny?: boolean
 }
