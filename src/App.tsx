@@ -7,6 +7,7 @@ function App() {
         <Box>
             <Typography variant="h3">Random Pokémon Team Generator for Pokémon Stadium</Typography>
             <Team />
+            <Typography variant="body2">This is a WIP</Typography>
         </Box>
     )
 }
