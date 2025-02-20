@@ -13,7 +13,7 @@ function App() {
         <ThemeProvider theme={theme}>
             <Stack spacing={2}>
                 <Typography variant="h3">
-                    Random Pokémon Team Generator for Pokémon Stadium
+                    Random Pokémon Team Generator
                 </Typography>
                 <Grid size={12}>
                     <Controls />
