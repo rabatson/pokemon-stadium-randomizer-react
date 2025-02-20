@@ -12,15 +12,20 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Stack spacing={2}>
-                <Typography variant="h3">
-                    Random Pokémon Team Generator
-                </Typography>
+                <Typography variant="h3">Random Pokémon Team Generator</Typography>
                 <Grid size={12}>
                     <Controls />
                     <Team />
                 </Grid>
                 <Grid size={12}>
-                    <Typography variant="body2">This is a WIP</Typography>
+                    <Typography variant="body2">
+                        This is a WIP
+                        <br />
+                        Check it out on{' '}
+                        <a href="https://github.com/rabatson/pokemon-stadium-randomizer-react">
+                            Github
+                        </a>
+                    </Typography>
                 </Grid>
             </Stack>
         </ThemeProvider>

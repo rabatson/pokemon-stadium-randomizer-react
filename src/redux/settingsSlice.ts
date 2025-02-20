@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { SettingsState } from '../types'
 
 const initialState: SettingsState = {
-        maxID: 251,
-        allowGen2: true,
-        allowWildcard: false
+    maxID: 251,
+    allowGen2: true,
+    allowWildcard: false,
 }
 
 const settingsSlice = createSlice({
@@ -20,7 +20,7 @@ const settingsSlice = createSlice({
         setAllowWildcard: (state: { allowWildcard: boolean }, action: PayloadAction<boolean>) => {
             state.allowWildcard = action.payload
         },
-    }
+    },
 })
 
 export const { setMaxID, setAllowGen2, setAllowWildcard } = settingsSlice.actions

@@ -1,14 +1,14 @@
-import { Button} from "@mui/material"
-import { useDispatch, useSelector } from "react-redux"
-import { setTeam } from "../redux/teamSlice"
-import { useCallback, useEffect } from "react"
-import { allPokemon } from "../pokemon/Pokemon"
-import { Pokemon } from "../types"
-import { RootState } from "../redux/store"
+import { Button } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { setTeam } from '../redux/teamSlice'
+import { useEffect } from 'react'
+import { allPokemon } from '../pokemon/Pokemon'
+import { Pokemon } from '../types'
+import { RootState } from '../redux/store'
 
 function GenerateTeamButton() {
     const dispatch = useDispatch()
-    const { allowGen2, maxID } = useSelector((state: RootState) => state.settings)
+    const { maxID } = useSelector((state: RootState) => state.settings)
     const team: Pokemon[] = useSelector((state: RootState) => state.pokemon.team)
 
     function rollForShiny(): boolean {
@@ -22,7 +22,7 @@ function GenerateTeamButton() {
         return roll === MIN_NUMBER
     }
 
-    const selectPokemon = useCallback((): Pokemon => {
+    const selectPokemon = (): Pokemon => {
         const selectedID = Math.floor(Math.random() * (maxID - 1) + 1)
 
         const selectedPokemon: Pokemon | undefined = allPokemon.find(
@@ -36,23 +36,25 @@ function GenerateTeamButton() {
         const isShiny = rollForShiny()
 
         return { ...selectedPokemon, isShiny }
-    }, [maxID, allowGen2])
+    }
 
     const generateTeam = () => {
         const newTeam = Array.from({ length: 6 }, () => selectPokemon())
-        
+
         // probably want to break this up to generate all six slots so it can re-roll duplicates more easily
         dispatch(setTeam(newTeam))
     }
 
     useEffect(() => {
-        if(team.length === 0){
+        if (team.length === 0) {
             generateTeam()
         }
-    }, [team])
+    }, [team, generateTeam])
 
     return (
-        <Button variant="contained" onClick={generateTeam}>Generate Team</Button>
+        <Button variant="contained" onClick={generateTeam}>
+            Generate Team
+        </Button>
     )
 }
 

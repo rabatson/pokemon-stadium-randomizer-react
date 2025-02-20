@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { Pokemon, PokemonState } from '../types'
 
 const initialState: PokemonState = {
-    team: []
+    team: [],
 }
 
 const teamSlice = createSlice({
@@ -12,7 +12,7 @@ const teamSlice = createSlice({
         setTeam: (state: { team: Pokemon[] }, action: PayloadAction<Pokemon[]>) => {
             state.team = action.payload
         },
-    }
+    },
 })
 
 export const { setTeam } = teamSlice.actions

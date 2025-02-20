@@ -5,8 +5,8 @@ import settingsReducer from './settingsSlice'
 export const store = configureStore({
     reducer: {
         pokemon: teamReducer,
-        settings: settingsReducer
-    }
+        settings: settingsReducer,
+    },
 })
 
 export type RootState = ReturnType<typeof store.getState>

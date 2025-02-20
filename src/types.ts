@@ -9,7 +9,7 @@ export type PokemonState = {
 }
 
 export type SettingsState = {
-    maxID: number,
+    maxID: number
     allowGen2: boolean
     allowWildcard: boolean
 }
