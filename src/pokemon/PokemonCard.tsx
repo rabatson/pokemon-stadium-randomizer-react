@@ -10,6 +10,9 @@ const StyledCard = styled(Card)({
     background: 'transparent',
     boxShadow: 'none',
     color: '#eff0f1',
+    '@media (prefers-color-scheme: light)': {
+        color: '#213547',
+    }
 })
 
 export default function PokemonCard({ pokemon }: Readonly<PokemonCardProps>) {
