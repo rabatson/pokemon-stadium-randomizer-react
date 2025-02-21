@@ -4,6 +4,7 @@ import './App.css'
 import Team from './pokemon/Team'
 import Controls from './Controls/Controls'
 import { createTheme, responsiveFontSizes, ThemeProvider } from '@mui/material/styles'
+import Stats from './Stats/Stats'
 
 let theme = createTheme()
 theme = responsiveFontSizes(theme)
@@ -18,6 +19,7 @@ function App() {
                     <Team />
                 </Grid>
                 <Grid size={12}>
+                    <Stats />
                     <Typography variant="body2">
                         This is a WIP
                         <br />
