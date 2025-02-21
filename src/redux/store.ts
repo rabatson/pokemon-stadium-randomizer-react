@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import teamReducer from './teamSlice'
 import settingsReducer from './settingsSlice'
+import statsReducer from './statsSlice'
 
 export const store = configureStore({
     reducer: {
         pokemon: teamReducer,
         settings: settingsReducer,
+        stats: statsReducer,
     },
 })
 
