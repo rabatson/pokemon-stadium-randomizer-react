@@ -5,6 +5,8 @@ const initialState: SettingsState = {
     maxID: 251,
     allowGen2: true,
     allowWildcard: false,
+    allowDuplicates: false,
+    forceMagikarp: false,
 }
 
 const settingsSlice = createSlice({
@@ -20,8 +22,18 @@ const settingsSlice = createSlice({
         setAllowWildcard: (state: { allowWildcard: boolean }, action: PayloadAction<boolean>) => {
             state.allowWildcard = action.payload
         },
+        setAllowDuplicates: (
+            state: { allowDuplicates: boolean },
+            action: PayloadAction<boolean>,
+        ) => {
+            state.allowDuplicates = action.payload
+        },
+        setForceMagikarp: (state: { forceMagikarp: boolean }, action: PayloadAction<boolean>) => {
+            state.forceMagikarp = action.payload
+        },
     },
 })
 
-export const { setMaxID, setAllowGen2, setAllowWildcard } = settingsSlice.actions
+export const { setMaxID, setAllowGen2, setAllowWildcard, setAllowDuplicates, setForceMagikarp } =
+    settingsSlice.actions
 export default settingsSlice.reducer
