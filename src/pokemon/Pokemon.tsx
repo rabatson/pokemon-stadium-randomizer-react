@@ -107,6 +107,54 @@ export const gen1Pokemon: Pokemon[] = [
     { id: 99, name: 'Kingler' },
     { id: 100, name: 'Voltorb' },
     { id: 101, name: 'Electrode' },
+    { id: 102, name: 'Exeggcute' },
+    { id: 103, name: 'Exeggutor' },
+    { id: 104, name: 'Cubone' },
+    { id: 105, name: 'Marowak' },
+    { id: 106, name: 'Hitmonlee' },
+    { id: 107, name: 'Hitmonchan' },
+    { id: 108, name: 'Lickitung' },
+    { id: 109, name: 'Koffing' },
+    { id: 110, name: 'Weezing' },
+    { id: 111, name: 'Rhyhorn' },
+    { id: 112, name: 'Rhydon' },
+    { id: 113, name: 'Chansey' },
+    { id: 114, name: 'Tangela' },
+    { id: 115, name: 'Kangaskhan' },
+    { id: 116, name: 'Horsea' },
+    { id: 117, name: 'Seadra' },
+    { id: 118, name: 'Goldeen' },
+    { id: 119, name: 'Seaking' },
+    { id: 120, name: 'Staryu' },
+    { id: 121, name: 'Starmie' },
+    { id: 122, name: 'Mr. Mime' },
+    { id: 123, name: 'Scyther' },
+    { id: 124, name: 'Jynx' },
+    { id: 125, name: 'Electabuzz' },
+    { id: 126, name: 'Magmar' },
+    { id: 127, name: 'Pinsir' },
+    { id: 128, name: 'Tauros' },
+    { id: 129, name: 'Magikarp' },
+    { id: 130, name: 'Gyarados' },
+    { id: 131, name: 'Lapras' },
+    { id: 132, name: 'Ditto' },
+    { id: 133, name: 'Eevee' },
+    { id: 134, name: 'Vaporeon' },
+    { id: 135, name: 'Jolteon' },
+    { id: 136, name: 'Flareon' },
+    { id: 137, name: 'Porygon' },
+    { id: 138, name: 'Omanyte' },
+    { id: 139, name: 'Omastar' },
+    { id: 140, name: 'Kabuto' },
+    { id: 141, name: 'Kabutops' },
+    { id: 142, name: 'Aerodactyl' },
+    { id: 143, name: 'Snorlax' },
+    { id: 144, name: 'Articuno' },
+    { id: 145, name: 'Zapdos' },
+    { id: 146, name: 'Moltres' },
+    { id: 147, name: 'Dratini' },
+    { id: 148, name: 'Dragonair' },
+    { id: 149, name: 'Dragonite' },
     { id: 150, name: 'Mewtwo' },
     { id: 151, name: 'Mew' },
 ]
@@ -213,6 +261,12 @@ export const gen2Pokemon: Pokemon[] = [
     { id: 250, name: 'Ho-oh' },
     { id: 251, name: 'Celebi' },
 ]
+
+export const magikarp: Pokemon =
+    gen1Pokemon.find((p) => p.id === 129) ??
+    (() => {
+        throw new Error('Magikarp not found in gen1Pokemon, how?')
+    })()
 
 /**
  * Concatenated list of all generation of Pokemon
