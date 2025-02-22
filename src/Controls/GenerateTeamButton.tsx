@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { setTeamSlot } from '../redux/teamSlice'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 import { allPokemon, magikarp } from '../pokemon/Pokemon'
 import { Pokemon } from '../types'
 import { RootState } from '../redux/store'
@@ -15,29 +15,29 @@ function GenerateTeamButton() {
     const team: Pokemon[] = useSelector((state: RootState) => state.pokemon.team)
     const teamGeneratedRef = useRef(false)
 
-    function rollForShiny(): boolean {
+    const rollForShiny = useCallback((): boolean => {
         // Upper limit for chances of shiny
-        const MAX_NUMBER = 4096
+        const maxNumber = 4096
         // Number to hit for a shiny
-        const MIN_NUMBER = 1
+        const minNumber = 1
 
-        const roll = Math.floor(Math.random() * (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER)
+        const roll = Math.floor(Math.random() * (maxNumber - minNumber) + minNumber)
 
-        const isShiny: boolean = roll === MIN_NUMBER
+        const isShiny: boolean = roll === minNumber
 
         if (isShiny) {
             dispatch(incrementShinies())
         }
         return isShiny
-    }
+    }, [dispatch])
 
-    // replace a random slot with a magikarp - but let's let it be shiny for fun
-    const replaceWithKarp = (): void => {
-        const slot = Math.floor(Math.random() * (5 + 0) + 1)
+    // Replace a random slot with a magikarp - but let's let it be shiny for fun
+    const replaceWithKarp = useCallback((): void => {
+        const slot = Math.floor(Math.random() * 5 + 1)
         dispatch(setTeamSlot({ slot, pokemon: { ...magikarp, isShiny: rollForShiny() } }))
-    }
+    }, [dispatch, rollForShiny])
 
-    const selectPokemon = (): Pokemon => {
+    const selectPokemon = useCallback((): Pokemon => {
         const selectedID = Math.floor(Math.random() * (maxID - 1) + 1)
 
         const selectedPokemon: Pokemon | undefined = allPokemon.find(
@@ -48,10 +48,10 @@ function GenerateTeamButton() {
             return selectPokemon()
         }
 
-        return { ...selectedPokemon, isShiny: rollForShiny() }
-    }
+        return { ...selectedPokemon }
+    }, [maxID])
 
-    const generateTeam = () => {
+    const generateTeam = useCallback(() => {
         const localTeam = [...team]
 
         for (let i = 0; i < 6; i++) {
@@ -64,6 +64,8 @@ function GenerateTeamButton() {
                     pokemon = selectPokemon()
                 } while (localTeam.some((p) => p.id === pokemon.id))
             }
+            // Roll for shiny after generation to prevent the shiny counter from incrementing if a duplicate exists
+            pokemon = { ...pokemon, isShiny: rollForShiny() }
 
             localTeam.push(pokemon)
             dispatch(setTeamSlot({ slot: i, pokemon }))
@@ -72,8 +74,17 @@ function GenerateTeamButton() {
         if (forceMagikarp) {
             replaceWithKarp()
         }
+
         dispatch(incrementTeams())
-    }
+    }, [
+        team,
+        allowDuplicates,
+        forceMagikarp,
+        selectPokemon,
+        replaceWithKarp,
+        rollForShiny,
+        dispatch,
+    ])
 
     // Generate a team on initial load
     useEffect(() => {
