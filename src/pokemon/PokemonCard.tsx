@@ -1,5 +1,5 @@
 import { Pokemon } from '../types'
-import { Card, CardContent, styled, Typography } from '@mui/material'
+import { Card, CardContent, Stack, styled, Typography } from '@mui/material'
 
 type PokemonCardProps = {
     pokemon: Pokemon
@@ -13,6 +13,22 @@ const StyledCard = styled(Card)({
     '@media (prefers-color-scheme: light)': {
         color: '#213547',
     },
+    '.ShinyMarker': {
+        WebkitAnimation: 'rainbow 5s infinite',
+    },
+    '@-webkit-keyframes rainbow': {
+        '0%': { color: '#ffa500' },
+        '10%': { color: '#800080' },
+        '20%': { color: '#ff0000' },
+        '30%': { color: '#5f9ea0' },
+        '40%:': { color: '#ffff00' },
+        '50%': { color: '#ff7f50' },
+        '60%': { color: '#008000' },
+        '70%': { color: '#00ffff' },
+        '80%': { color: '#ff1493' },
+        '90%': { color: '#1e90ff' },
+        '100%': { color: '#ffa500' },
+    },
 })
 
 export default function PokemonCard({ pokemon }: Readonly<PokemonCardProps>) {
@@ -23,9 +39,14 @@ export default function PokemonCard({ pokemon }: Readonly<PokemonCardProps>) {
     return (
         <StyledCard className="card">
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    {pokemon?.name}
-                </Typography>
+                <Stack direction="row" justifyContent="center">
+                    <Typography gutterBottom variant="h5" component="div">
+                        {`${pokemon?.name}`}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="div" className="ShinyMarker">
+                        {pokemon?.isShiny ? '*' : ''}
+                    </Typography>
+                </Stack>
                 <img src={spriteSrc} />
             </CardContent>
         </StyledCard>
